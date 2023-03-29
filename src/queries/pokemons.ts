@@ -4,7 +4,7 @@ import request from 'graphql-request';
 import {useInfiniteQuery, type QueryFunctionContext} from 'react-query';
 import {type Species} from '../types/pokemonType';
 
-type QueryPokemonFilter = {
+export type QueryPokemonFilter = {
 	name: string;
 	typeId?: number;
 };
@@ -14,7 +14,7 @@ type FetchPokemonsResponse = {
 };
 
 type QueryPokemonsKey = ['pokemons', QueryPokemonFilter];
-type QeuryPokemonData = FetchPokemonsResponse['pokemon_v2_pokemonspecies'];
+type QueryPokemonData = FetchPokemonsResponse['pokemon_v2_pokemonspecies'];
 
 export const fetchPokemons = async (ctx: QueryFunctionContext<QueryPokemonsKey>) => {
 	const {name, typeId} = ctx.queryKey[1];
@@ -51,7 +51,7 @@ export const fetchPokemons = async (ctx: QueryFunctionContext<QueryPokemonsKey>)
 };
 
 export const useInfQueryPokemons = (filter: QueryPokemonFilter) =>
-	useInfiniteQuery<QeuryPokemonData, unknown, QeuryPokemonData, QueryPokemonsKey>({
+	useInfiniteQuery<QueryPokemonData, unknown, QueryPokemonData, QueryPokemonsKey>({
 		queryKey: ['pokemons', filter],
 		queryFn: fetchPokemons,
 		keepPreviousData: true,

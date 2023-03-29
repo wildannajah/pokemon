@@ -1,6 +1,8 @@
-import {fetchPokemons, useInfQueryPokemons} from '@/queries/pokemons';
+import {fetchPokemons, type QueryPokemonFilter, useInfQueryPokemons} from '@/queries/pokemons';
+import PokemonListFilter from '@/sections/pokemon-list-filter';
 import getQueryClient from '@/utils/getQueryClient';
 import {type GetStaticPropsResult} from 'next';
+import {useEffect, useState} from 'react';
 import {dehydrate, type DehydratedState} from 'react-query';
 
 const initialState = {name: '', typeId: 0};
@@ -22,11 +24,16 @@ export async function getStaticProps(): Promise<Result> {
 }
 
 export default function Home() {
-	const {data} = useInfQueryPokemons(initialState);
+	const [filter, setFilter] = useState<QueryPokemonFilter>(initialState);
+	const {data} = useInfQueryPokemons(filter);
 	const {pages} = data ?? {};
 	const pokemonSpecies = pages!.flat();
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [filter]);
 	return (
 		<div>
+			<PokemonListFilter filter={filter} setFilter={setFilter} />
 			<h1>
 				{pokemonSpecies.map(({id, name}) => (
 					<div key={id}>{name}</div>

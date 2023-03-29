@@ -13,5 +13,6 @@ export type PokemonType = {
 };
 
 export type Type = {
+	id: number;
 	name: string;
 };
