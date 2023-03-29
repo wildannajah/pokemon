@@ -1,0 +1,12 @@
+\.next-env.d.ts# Ignore build files
+build/
+
+# Ignore Next.js configuration files
+next.config.js
+next-env.d.ts
+
+# Ignore test files
+**/__tests__/**
+
+# Ignore static files
+public/
