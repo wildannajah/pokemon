@@ -1,3 +1,21 @@
 {
-	"cSpell.words": ["pokemons", "pokemonspecies", "pokemontype", "pokemontypes", "Pokemonypes"]
+	"cSpell.words": [
+		"abilityeffecttexts",
+		"bulbasaur",
+		"charmander",
+		"movedamageclass",
+		"pikachu",
+		"pokemonabilities",
+		"pokemonmoves",
+		"pokemons",
+		"pokemonspecies",
+		"pokemonspeciesflavortexts",
+		"pokemonspecy",
+		"pokemonstats",
+		"pokemontype",
+		"pokemontypes",
+		"Pokemonypes",
+		"Specy",
+		"squirtle"
+	]
 }

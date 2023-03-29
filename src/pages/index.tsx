@@ -2,6 +2,7 @@ import {fetchPokemons, type QueryPokemonFilter, useInfQueryPokemons} from '@/que
 import PokemonListFilter from '@/sections/pokemon-list-filter';
 import getQueryClient from '@/utils/getQueryClient';
 import {type GetStaticPropsResult} from 'next';
+import Link from 'next/link';
 import {useEffect, useState} from 'react';
 import {dehydrate, type DehydratedState} from 'react-query';
 
@@ -36,7 +37,9 @@ export default function Home() {
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
 			<h1>
 				{pokemonSpecies.map(({id, name}) => (
-					<div key={id}>{name}</div>
+					<Link href={`/pokemon/${name}`} key={id}>
+						{name}
+					</Link>
 				))}
 			</h1>
 		</div>
