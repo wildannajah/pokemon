@@ -31,7 +31,6 @@ export default function Home() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [filter]);
-	console.log(filter);
 	return (
 		<div>
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
