@@ -11,6 +11,14 @@ export default function PokemonListFilter({filter, setFilter}: Props) {
 	const {data} = useQueryPokemonypes();
 	return (
 		<div>
+			<input
+				type='text'
+				placeholder='🔍 Search pokémon'
+				maxLength={11}
+				onChange={({target}) => {
+					setFilter(prev => ({...prev, name: String(target.value)}));
+				}}
+			/>
 			<select
 				value={filter.typeId}
 				onChange={({target}) => {
