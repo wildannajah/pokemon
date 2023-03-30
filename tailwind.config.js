@@ -1,4 +1,29 @@
 /** @type {import('tailwindcss').Config} */
+
+const elements = [
+	'undefined',
+	'bug',
+	'dark',
+	'dragon',
+	'electric',
+	'fairy',
+	'fighting',
+	'fire',
+	'flying',
+	'ghost',
+	'grass',
+	'ground',
+	'ice',
+	'normal',
+	'poison',
+	'psychic',
+	'rock',
+	'steel',
+	'water',
+	'unknown',
+	'shadow',
+];
+
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
@@ -11,6 +36,10 @@ module.exports = {
 			},
 			backgroundPosition: {
 				pokecard: '40% 0%, right',
+			},
+			colors: {
+				bg: Object.fromEntries(elements.map(current => [current, `var(--${current})`])),
+				type: Object.fromEntries(elements.map(current => [current, `var(--type-${current})`])),
 			},
 		},
 	},

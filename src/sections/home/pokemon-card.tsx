@@ -6,10 +6,11 @@ function PokemonCard({id, name, pokemon_v2_pokemons}: Species) {
 	const types = pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.map(
 		item => item.pokemon_v2_type.name,
 	);
+	const [background] = types || ['undefined'];
 	const imageUrl =
 		'https://cdn.statically.io/gh/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 	return (
-		<Link href={`/pokemon/${name}`} className='rounded-lg bg-slate-500 pokemon-card'>
+		<Link href={`/pokemon/${name}`} className={`rounded-lg pokemon-card bg-elm-${background}`}>
 			<div className='flex items-center justify-between w-full pl-5 pr-1'>
 				<div>
 					<div>{id}</div>
