@@ -2,7 +2,17 @@
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: {
+				pokecard: `
+					url('/assets/pokeBG.svg'), url('/assets/pokeBG2.svg')
+					
+        `,
+			},
+			backgroundPosition: {
+				pokecard: '40% 0%, right',
+			},
+		},
 	},
 	plugins: [],
 };

@@ -1,0 +1,6 @@
+.background-home {
+	background-image: url('/assets/pokeBG2-alt.svg');
+	background-repeat: no-repeat;
+	background-position: center top 75%;
+	background-size: 100% auto;
+}

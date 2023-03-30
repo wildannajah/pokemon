@@ -33,8 +33,13 @@ export default function Home() {
 		window.scrollTo(0, 0);
 	}, [filter]);
 	return (
-		<div>
+		<div className='p-8 space-y-5'>
+			<div className='pt-8 my-2 space-y-2'>
+				<div className='text-3xl font-bold'>Pokédex</div>
+				<div>Search for Pokémon by name or using the National Pokédex Number</div>{' '}
+			</div>
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
+
 			<div className='pokemon-card-container'>
 				{pokemonSpecies.map(({id, name, pokemon_v2_pokemons}) => (
 					<PokemonCard
