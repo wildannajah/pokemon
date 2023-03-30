@@ -3,7 +3,6 @@ import PokemonCard from '@/sections/home/pokemon-card';
 import PokemonListFilter from '@/sections/home/pokemon-list-filter';
 import getQueryClient from '@/utils/getQueryClient';
 import {type GetStaticPropsResult} from 'next';
-import Link from 'next/link';
 import {useEffect, useState} from 'react';
 import {dehydrate, type DehydratedState} from 'react-query';
 
@@ -38,13 +37,12 @@ export default function Home() {
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
 			<div className='pokemon-card-container'>
 				{pokemonSpecies.map(({id, name, pokemon_v2_pokemons}) => (
-					<Link href={`/pokemon/${name}`} key={id}>
-						<PokemonCard
-							id={id}
-							name={name}
-							pokemon_v2_pokemons={pokemon_v2_pokemons}
-						></PokemonCard>
-					</Link>
+					<PokemonCard
+						key={id}
+						id={id}
+						name={name}
+						pokemon_v2_pokemons={pokemon_v2_pokemons}
+					></PokemonCard>
 				))}
 			</div>
 		</div>

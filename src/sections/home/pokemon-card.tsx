@@ -1,18 +1,26 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import {type Species} from '../../types/pokemonType';
 
-function PokemonCard({name, pokemon_v2_pokemons}: Species) {
+function PokemonCard({id, name, pokemon_v2_pokemons}: Species) {
 	const types = pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.map(
 		item => item.pokemon_v2_type.name,
 	);
+	const imageUrl =
+		'https://cdn.statically.io/gh/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 	return (
-		<div>
-			<div>{name}</div>
-			<div className='flex gap-1'>
-				{types.map(type => (
-					<div key={type}>{type}</div>
-				))}
-			</div>
-		</div>
+		<Link href={`/pokemon/${name}`} className='pokemon-card group'>
+			<div>{id}</div>
+			<b className='col-span-3 text-xl'>{name}</b>
+			<div className='col-span-2 -mr-5 capitalize'>{types.join(', ')}</div>
+			<Image
+				src={`${imageUrl}/${id}.png`}
+				alt={name}
+				width={128}
+				height={128}
+				className='pokemon-image'
+			/>
+		</Link>
 	);
 }
 
