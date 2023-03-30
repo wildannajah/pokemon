@@ -2,5 +2,6 @@
 @import './base.css';
 
 @import 'tailwindcss/components';
+@import './components/pokemon-card.css';
 
 @import 'tailwindcss/utilities';

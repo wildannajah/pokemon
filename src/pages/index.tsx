@@ -1,5 +1,6 @@
 import {fetchPokemons, type QueryPokemonFilter, useInfQueryPokemons} from '@/queries/pokemons';
-import PokemonListFilter from '@/sections/pokemon-list-filter';
+import PokemonCard from '@/sections/home/pokemon-card';
+import PokemonListFilter from '@/sections/home/pokemon-list-filter';
 import getQueryClient from '@/utils/getQueryClient';
 import {type GetStaticPropsResult} from 'next';
 import Link from 'next/link';
@@ -35,13 +36,17 @@ export default function Home() {
 	return (
 		<div>
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
-			<h1>
-				{pokemonSpecies.map(({id, name}) => (
+			<div className='pokemon-card-container'>
+				{pokemonSpecies.map(({id, name, pokemon_v2_pokemons}) => (
 					<Link href={`/pokemon/${name}`} key={id}>
-						{name}
+						<PokemonCard
+							id={id}
+							name={name}
+							pokemon_v2_pokemons={pokemon_v2_pokemons}
+						></PokemonCard>
 					</Link>
 				))}
-			</h1>
+			</div>
 		</div>
 	);
 }
