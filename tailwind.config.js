@@ -44,5 +44,5 @@ module.exports = {
 		},
 	},
 	plugins: [],
-	safelist: [...elements.map(elm => `bg-elm-${elm}`)],
+	safelist: [...elements.map(elm => `bg-elm-${elm}`), ...elements.map(elm => `bg-type-${elm}`)],
 };

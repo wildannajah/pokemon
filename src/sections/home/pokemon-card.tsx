@@ -1,3 +1,5 @@
+import BadgeType from '@/components/badge-type';
+import {formatPokemonId} from '@/utils/pokemon';
 import Image from 'next/image';
 import Link from 'next/link';
 import {type Species} from '../../types/pokemonType';
@@ -11,10 +13,14 @@ function PokemonCard({id, name, pokemon_v2_pokemons}: Species) {
 	return (
 		<Link href={`/pokemon/${name}`} className={`rounded-lg pokemon-card bg-elm-${types[0]}`}>
 			<div className='flex items-center justify-between w-full pl-5 pr-1'>
-				<div>
-					<div>{id}</div>
-					<b className='col-span-3 text-xl capitalize'>{name}</b>
-					<div className='col-span-2 capitalize'>{types.join(', ')}</div>
+				<div className='w-full'>
+					<div>#{formatPokemonId(id)}</div>
+					<b className='col-span-3 text-2xl text-white capitalize'>{name}</b>
+					<div className='flex space-x-2 text-sm text-white'>
+						{types.map(type => (
+							<BadgeType key={type} type={type} />
+						))}
+					</div>
 				</div>
 				<Image
 					src={`${imageUrl}/${id}.png`}
