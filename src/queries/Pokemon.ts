@@ -54,6 +54,10 @@ const pokemon = /* GraphQL */ `
 					flavor_text
 					language_id
 				}
+				pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 9}}) {
+					genus
+					language_id
+				}
 			}
 		}
 	}

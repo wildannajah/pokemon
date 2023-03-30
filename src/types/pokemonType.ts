@@ -7,6 +7,7 @@ export type Species = {
 export type Specy = {
 	pokemon_v2_pokemon: Pokemon[];
 	pokemon_v2_pokemonspeciesflavortexts: FlavorText[];
+	pokemon_v2_pokemonspeciesnames: SpeciesName[];
 };
 
 export type Pokemon = {
@@ -73,4 +74,8 @@ export type MoveDamageClass = {
 export type FlavorText = {
 	id: number;
 	flavor_text: string;
+};
+
+export type SpeciesName = {
+	genus: string;
 };
