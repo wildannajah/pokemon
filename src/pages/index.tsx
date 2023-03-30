@@ -1,9 +1,10 @@
 import {fetchPokemons, type QueryPokemonFilter, useInfQueryPokemons} from '@/queries/pokemons';
 import PokemonCard from '@/sections/home/pokemon-card';
+import PokemonCardLoader from '@/sections/home/pokemon-card-loader';
 import PokemonListFilter from '@/sections/home/pokemon-list-filter';
 import getQueryClient from '@/utils/getQueryClient';
 import {type GetStaticPropsResult} from 'next';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {dehydrate, type DehydratedState} from 'react-query';
 
 const initialState = {name: '', typeId: 0};
@@ -26,12 +27,33 @@ export async function getStaticProps(): Promise<Result> {
 
 export default function Home() {
 	const [filter, setFilter] = useState<QueryPokemonFilter>(initialState);
-	const {data} = useInfQueryPokemons(filter);
+	const {data, fetchNextPage, isFetching, isFetchingNextPage} = useInfQueryPokemons(filter);
 	const {pages} = data ?? {};
 	const pokemonSpecies = pages!.flat();
+	const isLoading = isFetching || isFetchingNextPage;
+	const loadMoreRef = useRef(null);
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [filter]);
+		const observer = new IntersectionObserver(entries => {
+			entries.forEach(async entry => {
+				if (entry.isIntersecting) {
+					await fetchNextPage();
+				}
+			});
+		});
+
+		if (loadMoreRef.current) {
+			observer.observe(loadMoreRef.current);
+		}
+
+		return () => {
+			if (loadMoreRef.current) {
+				// eslint-disable-next-line react-hooks/exhaustive-deps
+				observer.unobserve(loadMoreRef.current);
+			}
+		};
+	}, [fetchNextPage, filter]);
 	return (
 		<div className='p-8 space-y-5'>
 			<div className='pt-8 my-2 space-y-2'>
@@ -49,7 +71,13 @@ export default function Home() {
 						pokemon_v2_pokemons={pokemon_v2_pokemons}
 					></PokemonCard>
 				))}
+				{isLoading &&
+					Array.from({length: 6}).map((_, index) => (
+						<PokemonCardLoader key={index} />
+						// <div key={index} className='w-full h-40 bg-gray-600 rounded-lg animate-pulse'></div>
+					))}
 			</div>
+			<div ref={loadMoreRef} />
 		</div>
 	);
 }
