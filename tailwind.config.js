@@ -38,10 +38,11 @@ module.exports = {
 				pokecard: '40% 0%, right',
 			},
 			colors: {
-				bg: Object.fromEntries(elements.map(current => [current, `var(--${current})`])),
+				elm: Object.fromEntries(elements.map(current => [current, `var(--${current})`])),
 				type: Object.fromEntries(elements.map(current => [current, `var(--type-${current})`])),
 			},
 		},
 	},
 	plugins: [],
+	safelist: [...elements.map(elm => `bg-elm-${elm}`)],
 };
