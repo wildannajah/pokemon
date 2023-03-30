@@ -1,3 +1,3 @@
 export const apiDocument = 'https://beta.pokeapi.co/graphql/v1beta';
 
-export const limit = 18;
+export const limit = 24;
