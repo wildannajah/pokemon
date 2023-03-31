@@ -1,7 +1,7 @@
-import {apiDocument} from '@/constant/pokemon';
+import {apiDocument, apiDocument2} from '@/constant/pokemon';
 import {type Type, type PokemonType} from '@/types/pokemonType';
 import request from 'graphql-request';
-import {useQuery} from 'react-query';
+import {type QueryFunctionContext, useQuery} from 'react-query';
 
 type FetchPokemonTypesResponse = {
 	pokemon_v2_pokemontype: PokemonType[];
@@ -34,3 +34,38 @@ export const useQueryPokemonypes = () =>
 		['pokemon-types'],
 		fetchPokemonTypes,
 	);
+
+export type QueryPokemonTypeRelationKey = ['pokemon-type-relation', string];
+export type QueryPokemonTypeRelationData = {
+	pokemon: {
+		weaknesses: string[];
+		resistant: string[];
+	};
+};
+
+export const fetchPokemonTypeRelation = async (
+	ctx: QueryFunctionContext<QueryPokemonTypeRelationKey>,
+) => {
+	const pokemonTypeRealtion = `
+		query pokemon($name: String) {
+			pokemon(name: $name) {
+				resistant
+				weaknesses
+			}
+		}`;
+	const result = await request<QueryPokemonTypeRelationData>(apiDocument2, pokemonTypeRealtion, {
+		name: ctx.queryKey[1],
+	});
+	return result;
+};
+
+export const useQueryPokemonTypeRelation = (name: string) =>
+	useQuery<
+	QueryPokemonTypeRelationData,
+	unknown,
+	QueryPokemonTypeRelationData,
+	QueryPokemonTypeRelationKey
+	>({
+		queryKey: ['pokemon-type-relation', name],
+		queryFn: fetchPokemonTypeRelation,
+	});

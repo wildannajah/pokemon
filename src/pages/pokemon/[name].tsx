@@ -1,6 +1,7 @@
 import BadgeType from '@/components/badge-type';
 import Iconify from '@/components/iconify';
 import {fetchPokemon, useQueryPokemon} from '@/queries/Pokemon';
+import {fetchPokemonTypeRelation, useQueryPokemonTypeRelation} from '@/queries/pokemon-types';
 import About from '@/sections/detail/pokemon-about';
 import Data from '@/sections/detail/pokemon-data';
 import Move from '@/sections/detail/pokemon-move';
@@ -16,6 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
+import Masonry from 'react-masonry-css';
 import {dehydrate, type DehydratedState} from 'react-query';
 
 type Context = GetStaticPropsContext<{name: string}>;
@@ -28,6 +30,7 @@ export async function getStaticProps({params}: Context): Promise<Result> {
 	try {
 		const queryClient = getQueryClient();
 		await queryClient.fetchQuery(['pokemon', name], fetchPokemon);
+		await queryClient.fetchQuery(['pokemon-type-relation', name], fetchPokemonTypeRelation);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)));
 		return {
@@ -57,6 +60,8 @@ export default function PokemonDetail() {
 	const {name = ''} = router.query;
 	const pokemonName = Array.isArray(name) ? name[0].toString() : name.toString();
 	const {data} = useQueryPokemon(pokemonName);
+	const {data: datatType} = useQueryPokemonTypeRelation(pokemonName);
+	const {resistant, weaknesses} = datatType!.pokemon;
 	const pokemon = data!;
 	const {
 		id,
@@ -81,7 +86,7 @@ export default function PokemonDetail() {
 	return (
 		<div className={`bg-elm-${types[0]} h-full`}>
 			<Link href={'/'}>
-				<Iconify className=' text-white text-5xl p-5' icon='akar-icons:arrow-left' />
+				<Iconify className='p-5 text-5xl text-white ' icon='akar-icons:arrow-left' />
 			</Link>
 			<div className='flex items-center justify-center gap-5'>
 				<Image
@@ -102,19 +107,28 @@ export default function PokemonDetail() {
 					</div>
 				</div>
 			</div>
-			<About
-				pokemon_v2_pokemonspeciesflavortexts={pokeSpecy.pokemon_v2_pokemonspeciesflavortexts}
-				type={types[0]}
-			/>
-			<Data
-				weight={weight}
-				height={height}
-				pokemon_v2_pokemonabilities={pokeAbilities}
-				pokemon_v2_pokemonspecy={pokeSpecy}
-				type={types[0]}
-			/>
-			<Stat pokemon_v2_pokemonstats={pokeStats} type={types[0]} />
-			<Move pokemon_v2_pokemonmoves={pokeMoves} type={types[0]} />
+			<Masonry
+				// eslint-disable-next-line @typescript-eslint/naming-convention
+				breakpointCols={{default: 2, 768: 1}}
+				className={'pokemon-detail-card-container'}
+			>
+				<About
+					pokemon_v2_pokemonspeciesflavortexts={pokeSpecy.pokemon_v2_pokemonspeciesflavortexts}
+					type={types[0]}
+				/>
+				<Data
+					weight={weight}
+					height={height}
+					pokemon_v2_pokemonabilities={pokeAbilities}
+					pokemon_v2_pokemonspecy={pokeSpecy}
+					type={types[0]}
+					weaknesses={weaknesses}
+					resistant={resistant}
+				/>
+				<Stat pokemon_v2_pokemonstats={pokeStats} type={types[0]} />
+
+				<Move pokemon_v2_pokemonmoves={pokeMoves} type={types[0]} />
+			</Masonry>
 		</div>
 	);
 }

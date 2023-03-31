@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 export const apiDocument = 'https://beta.pokeapi.co/graphql/v1beta';
+export const apiDocument2 = 'https://graphql-pokemon2.vercel.app';
 
 export const limit = 24;
 

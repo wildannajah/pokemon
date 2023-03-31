@@ -37,12 +37,16 @@ export default function Move({pokemon_v2_pokemonmoves, type}: Props) {
 							} = move;
 
 							const item = machines[machines.length - 1]?.pokemon_v2_item.name;
-							const moveType = TYPE[typeId as unknown as keyof typeof TYPE] as string;
+							const moveType = TYPE[typeId as unknown as keyof typeof TYPE];
 							return (
 								<tr key={name} className='hover:bg-slate-50 [&_>_:nth-child(n_+_3)]:text-center'>
 									<td className='px-2 py-1 border-b border-r whitespace-nowrap'>{name}</td>
 									<td className='px-2 py-1 mx-auto border-b border-r'>
-										<BadgeType type={moveType} badgeOnly={true} />
+										<BadgeType
+											type={moveType}
+											badgeOnly={true}
+											className='justify-center mx-auto w-fit'
+										/>
 									</td>
 									<td className='px-2 py-1 border-b border-r' title={damage.name}>
 										{{
