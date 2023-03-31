@@ -37,7 +37,7 @@ export default function Move({pokemon_v2_pokemonmoves, type}: Props) {
 							} = move;
 
 							const item = machines[machines.length - 1]?.pokemon_v2_item.name;
-							const moveType = TYPE[typeId as unknown as keyof typeof TYPE];
+							const moveType = TYPE[typeId as unknown as keyof typeof TYPE] as string;
 							return (
 								<tr key={name} className='hover:bg-slate-50 [&_>_:nth-child(n_+_3)]:text-center'>
 									<td className='px-2 py-1 border-b border-r whitespace-nowrap'>{name}</td>
