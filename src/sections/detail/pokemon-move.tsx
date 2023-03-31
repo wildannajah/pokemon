@@ -1,14 +1,16 @@
 import BadgeType from '@/components/badge-type';
 import {TYPE} from '@/constant/pokemon';
 import {type PokemonMove} from '@/types/pokemonType';
+import PokemonCardDetail from './pokemon-card-detail';
 
 type Props = {
 	pokemon_v2_pokemonmoves: PokemonMove[];
+	type: string;
 };
 
-export default function Move({pokemon_v2_pokemonmoves}: Props) {
+export default function Move({pokemon_v2_pokemonmoves, type}: Props) {
 	return (
-		<div className='card'>
+		<PokemonCardDetail heading='Moves' type={type}>
 			<div className='relative max-h-[26rem] overflow-y-auto'>
 				<table className='w-full text-sm border-l border-separate border-spacing-0'>
 					<thead className='sticky top-0 text-left bg-white dark:bg-dark-card'>
@@ -61,6 +63,6 @@ export default function Move({pokemon_v2_pokemonmoves}: Props) {
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</PokemonCardDetail>
 	);
 }

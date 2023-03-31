@@ -82,8 +82,8 @@ export default function PokemonDetail() {
 				<Image
 					src={`${imageUrl}/${id}.png`}
 					alt={pokemonName}
-					width={128}
-					height={128}
+					width={144}
+					height={144}
 					className='relative right-0 drop-shadow-lg'
 				/>
 				<div>
@@ -98,15 +98,17 @@ export default function PokemonDetail() {
 			</div>
 			<About
 				pokemon_v2_pokemonspeciesflavortexts={pokeSpecy.pokemon_v2_pokemonspeciesflavortexts}
+				type={types[0]}
 			/>
 			<Data
 				weight={weight}
 				height={height}
 				pokemon_v2_pokemonabilities={pokeAbilities}
 				pokemon_v2_pokemonspecy={pokeSpecy}
+				type={types[0]}
 			/>
 			<Stat pokemon_v2_pokemonstats={pokeStats} type={types[0]} />
-			<Move pokemon_v2_pokemonmoves={pokeMoves} />
+			<Move pokemon_v2_pokemonmoves={pokeMoves} type={types[0]} />
 		</div>
 	);
 }

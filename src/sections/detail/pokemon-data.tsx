@@ -1,10 +1,12 @@
 import {type PokemonAbility, type Specy} from '@/types/pokemonType';
+import PokemonCardDetail from './pokemon-card-detail';
 
 type Props = {
 	weight: number;
 	height: number;
 	pokemon_v2_pokemonabilities: PokemonAbility[];
 	pokemon_v2_pokemonspecy: Specy;
+	type: string;
 };
 
 export default function Data({
@@ -12,6 +14,7 @@ export default function Data({
 	weight,
 	height,
 	pokemon_v2_pokemonabilities,
+	type,
 }: Props) {
 	const {genus} = pokemon_v2_pokemonspecy.pokemon_v2_pokemonspeciesnames[0];
 	const abilities = pokemon_v2_pokemonabilities.map(({pokemon_v2_ability}) => ({
@@ -19,7 +22,7 @@ export default function Data({
 		effect: pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].short_effect,
 	}));
 	return (
-		<div className='card'>
+		<PokemonCardDetail heading='Pokédex' type={type}>
 			<div className='grid grid-cols-3'>
 				<div>Species</div>
 				<div className='col-span-2'>{genus}</div>
@@ -36,6 +39,6 @@ export default function Data({
 					))}
 				</div>
 			</div>
-		</div>
+		</PokemonCardDetail>
 	);
 }

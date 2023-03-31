@@ -1,4 +1,5 @@
 import {type PokemonStat} from '@/types/pokemonType';
+import PokemonCardDetail from './pokemon-card-detail';
 
 type Props = {
 	pokemon_v2_pokemonstats: PokemonStat[];
@@ -13,7 +14,7 @@ export default function Stat({pokemon_v2_pokemonstats, type}: Props) {
 	const maxStats = 255;
 	let total = 0;
 	return (
-		<div className='card'>
+		<PokemonCardDetail heading='Base Stat' type={type}>
 			<div className='space-y-1 text-sm'>
 				{stats.map(({value, stat}) => {
 					total += value;
@@ -41,6 +42,6 @@ export default function Stat({pokemon_v2_pokemonstats, type}: Props) {
 					<div className='mr-2.5 w-7 text-right font-bold'>Max</div>
 				</div>
 			</div>
-		</div>
+		</PokemonCardDetail>
 	);
 }

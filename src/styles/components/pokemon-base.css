@@ -6,5 +6,5 @@
 }
 
 .card {
-	@apply rounded p-2 m-5 bg-white overflow-hidden shadow-lg;
+	@apply rounded-lg p-2 m-5 bg-white overflow-hidden shadow-lg;
 }

@@ -13,7 +13,7 @@ function PokemonCard({id, name, pokemon_v2_pokemons}: Species) {
 	return (
 		<Link href={`/pokemon/${name}`} className={`pokemon-card bg-elm-${types[0]}`}>
 			<div className='flex items-center justify-between w-full pl-5 pr-1'>
-				<div className='w-full'>
+				<div className='w-full space-y-1'>
 					<div>#{formatPokemonId(id)}</div>
 					<b className='col-span-3 text-2xl text-white capitalize'>{name}</b>
 					<div className='flex space-x-2 text-sm text-white'>
