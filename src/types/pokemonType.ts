@@ -56,6 +56,7 @@ export type AbilityEffectText = {
 
 export type PokemonMove = {
 	pokemon_v2_move: Move;
+	level: string;
 };
 
 export type Move = {
@@ -65,6 +66,7 @@ export type Move = {
 	accuracy?: number;
 	pp: number;
 	pokemon_v2_movedamageclass: MoveDamageClass;
+	pokemon_v2_machines: Machine[];
 };
 
 export type MoveDamageClass = {
@@ -78,4 +80,10 @@ export type FlavorText = {
 
 export type SpeciesName = {
 	genus: string;
+};
+
+export type Machine = {
+	pokemon_v2_item: {
+		name: string;
+	};
 };

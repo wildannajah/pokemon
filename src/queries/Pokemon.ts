@@ -44,7 +44,14 @@ const pokemon = /* GraphQL */ `
 					pokemon_v2_movedamageclass {
 						name
 					}
+					pokemon_v2_machines {
+						pokemon_v2_item {
+							name
+						}
+					}
 				}
+				move_id
+				level
 			}
 			pokemon_v2_pokemonspecy {
 				pokemon_v2_pokemonspeciesflavortexts(

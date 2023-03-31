@@ -20,15 +20,15 @@ export default function Data({
 	}));
 	return (
 		<div className='card'>
-			<div className='grid grid-cols-2'>
+			<div className='grid grid-cols-3'>
 				<div>Species</div>
-				<div>{genus}</div>
+				<div className='col-span-2'>{genus}</div>
 				<div>Weight</div>
-				<div>{weight}</div>
+				<div className='col-span-2'>{weight}</div>
 				<div>Weight</div>
-				<div>{height}</div>
+				<div className='col-span-2'>{height}</div>
 				<div>Ability</div>
-				<div>
+				<div className='col-span-2'>
 					{abilities.map(({name}) => (
 						<div key={name} className='capitalize'>
 							{name}

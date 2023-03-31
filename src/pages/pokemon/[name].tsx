@@ -105,7 +105,7 @@ export default function PokemonDetail() {
 				pokemon_v2_pokemonabilities={pokeAbilities}
 				pokemon_v2_pokemonspecy={pokeSpecy}
 			/>
-			<Stat pokemon_v2_pokemonstats={pokeStats} />
+			<Stat pokemon_v2_pokemonstats={pokeStats} type={types[0]} />
 			<Move pokemon_v2_pokemonmoves={pokeMoves} />
 		</div>
 	);
