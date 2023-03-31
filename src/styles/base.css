@@ -45,3 +45,13 @@
 		--type-shadow: #421c52;
 	}
 }
+
+#nprogress {
+	pointer-events: none;
+	.bar {
+		@apply top-0 left-0 h-2 w-full fixed z-50 bg-green-400 shadow-md;
+	}
+	.peg {
+		@apply right-0 opacity-100 w-full h-full block absolute shadow-md;
+	}
+}

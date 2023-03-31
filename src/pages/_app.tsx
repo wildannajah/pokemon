@@ -1,3 +1,4 @@
+import ProgressBar from '@/components/progress-bar';
 import '@/styles/globals.css';
 import getQueryClient from '@/utils/getQueryClient';
 import type {AppProps} from 'next/app';
@@ -13,6 +14,7 @@ export default function App({Component, pageProps}: Props) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Hydrate state={pageProps.dehydratedState}>
+				<ProgressBar />
 				<Component {...pageProps} />
 			</Hydrate>
 		</QueryClientProvider>
