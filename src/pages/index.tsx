@@ -58,7 +58,7 @@ export default function Home() {
 		<div className='p-8 space-y-5'>
 			<div className='pt-8 my-2 space-y-2'>
 				<div className='text-3xl font-bold'>Pokédex</div>
-				<div>Search for Pokémon by name or using the National Pokédex Number</div>{' '}
+				<div>Search for Pokémon by name or filter by type</div>{' '}
 			</div>
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
 
