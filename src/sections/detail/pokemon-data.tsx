@@ -27,7 +27,7 @@ export default function Data({
 		effect: pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].short_effect,
 	}));
 	return (
-		<PokemonCardDetail heading='Pokédex' type={type}>
+		<PokemonCardDetail heading='Pokédex Data' type={type}>
 			<div className='grid grid-cols-3'>
 				<div>Species</div>
 				<div className='col-span-2'>{genus}</div>

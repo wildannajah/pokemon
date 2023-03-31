@@ -8,6 +8,10 @@ export type Specy = {
 	pokemon_v2_pokemon: Pokemon[];
 	pokemon_v2_pokemonspeciesflavortexts: FlavorText[];
 	pokemon_v2_pokemonspeciesnames: SpeciesName[];
+	pokemon_v2_growthrate: Growthrate;
+	capture_rate: number;
+	hatch_counter: number;
+	base_happiness: number;
 };
 
 export type Pokemon = {
@@ -86,4 +90,8 @@ export type Machine = {
 	pokemon_v2_item: {
 		name: string;
 	};
+};
+
+export type Growthrate = {
+	name: string;
 };

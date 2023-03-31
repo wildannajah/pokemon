@@ -6,6 +6,7 @@ import About from '@/sections/detail/pokemon-about';
 import Data from '@/sections/detail/pokemon-data';
 import Move from '@/sections/detail/pokemon-move';
 import Stat from '@/sections/detail/pokemon-stat';
+import Training from '@/sections/detail/pokemon-training';
 import getQueryClient from '@/utils/getQueryClient';
 import {formatPokemonId} from '@/utils/pokemon';
 import {
@@ -128,6 +129,13 @@ export default function PokemonDetail() {
 				<Stat pokemon_v2_pokemonstats={pokeStats} type={types[0]} />
 
 				<Move pokemon_v2_pokemonmoves={pokeMoves} type={types[0]} />
+				<Training
+					type={types[0]}
+					happiness={pokeSpecy.base_happiness}
+					growthRate={pokeSpecy.pokemon_v2_growthrate.name}
+					captureRate={pokeSpecy.capture_rate}
+					hatchCounter={pokeSpecy.hatch_counter}
+				/>
 			</Masonry>
 		</div>
 	);

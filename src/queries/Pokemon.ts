@@ -54,6 +54,12 @@ const pokemon = /* GraphQL */ `
 				level
 			}
 			pokemon_v2_pokemonspecy {
+				pokemon_v2_growthrate {
+					name
+				}
+				capture_rate
+				hatch_counter
+				base_happiness
 				pokemon_v2_pokemonspeciesflavortexts(
 					where: {language_id: {_eq: 9}}
 					distinct_on: flavor_text
