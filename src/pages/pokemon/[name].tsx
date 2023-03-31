@@ -1,4 +1,5 @@
 import BadgeType from '@/components/badge-type';
+import Iconify from '@/components/iconify';
 import {fetchPokemon, useQueryPokemon} from '@/queries/Pokemon';
 import About from '@/sections/detail/pokemon-about';
 import Data from '@/sections/detail/pokemon-data';
@@ -12,6 +13,7 @@ import {
 	type GetStaticPropsResult,
 } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
 import {dehydrate, type DehydratedState} from 'react-query';
@@ -78,15 +80,19 @@ export default function PokemonDetail() {
 
 	return (
 		<div className={`bg-elm-${types[0]} h-full`}>
+			<Link href={'/'}>
+				<Iconify className=' text-white text-5xl p-5' icon='akar-icons:arrow-left' />
+			</Link>
 			<div className='flex items-center justify-center gap-5'>
 				<Image
 					src={`${imageUrl}/${id}.png`}
 					alt={pokemonName}
 					width={144}
 					height={144}
+					priority
 					className='relative right-0 drop-shadow-lg'
 				/>
-				<div>
+				<div className='space-y-2'>
 					<div>#{formatPokemonId(id)}</div>
 					<b className='col-span-3 text-2xl text-white capitalize'>{name}</b>
 					<div className='flex space-x-2 text-sm text-white'>
