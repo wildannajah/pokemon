@@ -62,7 +62,9 @@ export default function PokemonDetail() {
 	const pokemonName = Array.isArray(name) ? name[0].toString() : name.toString();
 	const {data} = useQueryPokemon(pokemonName);
 	const {data: datatType} = useQueryPokemonTypeRelation(pokemonName);
-	const {resistant, weaknesses} = datatType!.pokemon;
+	const typeRelation = datatType?.pokemon;
+	const resistant = typeRelation?.resistant ?? [];
+	const weaknesses = typeRelation?.weaknesses ?? [];
 	const pokemon = data!;
 	const {
 		id,
