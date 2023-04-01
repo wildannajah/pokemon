@@ -12,7 +12,6 @@ export default function PokemonListFilter({filter, setFilter}: Props) {
 	const {data} = useQueryPokemonypes();
 	return (
 		<div>
-			kontol
 			<div className='relative flex items-center text-gray-400 focus-within:text-gray-600'>
 				<Iconify
 					icon={'material-symbols:search'}
