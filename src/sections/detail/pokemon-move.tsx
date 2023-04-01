@@ -40,7 +40,9 @@ export default function Move({pokemon_v2_pokemonmoves, type}: Props) {
 							const moveType = TYPE[typeId as unknown as keyof typeof TYPE];
 							return (
 								<tr key={name} className='hover:bg-slate-50 [&_>_:nth-child(n_+_3)]:text-center'>
-									<td className='px-2 py-1 border-b border-r whitespace-nowrap'>{name}</td>
+									<td className='px-2 py-1 capitalize border-b border-r whitespace-nowrap'>
+										{name.replaceAll('-', ' ')}
+									</td>
 									<td className='px-2 py-1 mx-auto border-b border-r'>
 										<BadgeType
 											type={moveType}
