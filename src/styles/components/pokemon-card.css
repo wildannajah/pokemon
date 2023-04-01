@@ -3,5 +3,5 @@
 }
 
 .pokemon-card {
-	@apply bg-elm-undefined bg-pokecard bg-no-repeat shadow-lg rounded-lg;
+	@apply bg-elm-undefined bg-pokecard bg-no-repeat shadow-lg rounded-lg h-32;
 }
