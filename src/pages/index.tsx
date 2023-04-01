@@ -29,7 +29,7 @@ export default function Home() {
 	const [filter, setFilter] = useState<QueryPokemonFilter>(initialState);
 	const {data, fetchNextPage, isFetching, isFetchingNextPage} = useInfQueryPokemons(filter);
 	const {pages} = data ?? {};
-	const pokemonSpecies = pages!.flat();
+	const pokemonSpecies = pages?.flat();
 	const isLoading = isFetching || isFetchingNextPage;
 	const loadMoreRef = useRef(null);
 
@@ -61,9 +61,8 @@ export default function Home() {
 				<div>Search for Pokémon by name or filter by type</div>{' '}
 			</div>
 			<PokemonListFilter filter={filter} setFilter={setFilter} />
-
 			<div className='pokemon-card-container'>
-				{pokemonSpecies.map(({id, name, pokemon_v2_pokemons}) => (
+				{pokemonSpecies?.map(({id, name, pokemon_v2_pokemons}) => (
 					<PokemonCard
 						key={id}
 						id={id}
