@@ -73,7 +73,6 @@ export default function Home() {
 				{isLoading &&
 					Array.from({length: 6}).map((_, index) => (
 						<PokemonCardLoader key={index} />
-						// <div key={index} className='w-full h-40 bg-gray-600 rounded-lg animate-pulse'></div>
 					))}
 			</div>
 			<div ref={loadMoreRef} />
